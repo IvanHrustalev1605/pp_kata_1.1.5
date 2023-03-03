@@ -1,9 +1,6 @@
 package jm.task.core.jdbc.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Util {
     // реализуйте настройку соеденения с БД
@@ -12,13 +9,13 @@ public class Util {
     public static final String PASSWORD = "7x87rZ8E.";
     public static final String URL = "jdbc:mysql://localhost:3306/kata_pp";
 
-public Statement getConnection() {
+public Connection getConnection() {
     Connection connection = null;
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
         if (connection != null) {
-           return connection.createStatement();
+           return connection;
         }
         System.out.println("Ощибка подключения!");
     } catch (SQLException | ClassNotFoundException e) {
